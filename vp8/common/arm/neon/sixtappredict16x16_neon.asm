@@ -90,9 +90,15 @@ filt_blk2d_fp16x16_loop_neon
     vmlsl.u8        q10, d29, d1
     vmlsl.u8        q12, d30, d1
 
-    vext.8          d28, d7, d8, #1
-    vext.8          d29, d10, d11, #1
-    vext.8          d30, d13, d14, #1
+;    vext.8          d28, d7, d8, #1
+;    vext.8          d29, d10, d11, #1
+;    vext.8          d30, d13, d14, #1
+    vshr.u64        d28, d7, #8
+    vsli.64         d28, d8, #56
+    vshr.u64        d29, d10, #8
+    vsli.64         d29, d11, #56
+    vshr.u64        d30, d13, #8
+    vsli.64         d30, d14, #56
 
     vmlsl.u8        q9, d28, d1             ;-(src_ptr[-1] * vp8_filter[1])
     vmlsl.u8        q11, d29, d1
