@@ -63,10 +63,16 @@
     vshr.s16 q0, q0, #3 ;e/f >> 3
     vshr.s16 q1, q1, #3 ;g/h >> 3
 
+;;;    vtrn.32 d0, d2
+;;;    vtrn.32 d1, d3
+;;;    vtrn.16 d0, d1
+;;;    vtrn.16 d2, d3
+    vswp d4, d3      ; use d4 instead of d3
     vtrn.32 d0, d2
-    vtrn.32 d1, d3
+    vtrn.32 d1, d4
     vtrn.16 d0, d1
-    vtrn.16 d2, d3
+    vtrn.16 d2, d4
+    vswp d4, d3      ; restore d4, d3
 
     vstmia.16 r1!, {q0}
     vstmia.16 r1!, {q1}
